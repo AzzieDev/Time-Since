@@ -1,0 +1,25 @@
+<?php
+
+namespace Database\Factories;
+
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Tracker>
+ */
+class TrackerFactory extends Factory
+{
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
+     */
+    public function definition(): array
+    {
+        return [
+            'name' => fake()->words(3, true),
+            'current_start_at' => now(),
+            'stored_longest_streak_seconds' => 0,
+        ];
+    }
+}
