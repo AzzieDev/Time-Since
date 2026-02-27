@@ -39,31 +39,31 @@ class Tracker extends Model
         $start = $this->current_start_at;
 
         // Single largest unit check
-        $years = $start->diffInYears($now);
+        $years = (int) $start->diffInYears($now);
         if ($years > 0)
             return $years . ' ' . Str::plural('year', $years);
 
-        $months = $start->diffInMonths($now);
+        $months = (int) $start->diffInMonths($now);
         if ($months > 0)
             return $months . ' ' . Str::plural('month', $months);
 
-        $weeks = $start->diffInWeeks($now);
+        $weeks = (int) $start->diffInWeeks($now);
         if ($weeks > 0)
             return $weeks . ' ' . Str::plural('week', $weeks);
 
-        $days = $start->diffInDays($now);
+        $days = (int) $start->diffInDays($now);
         if ($days > 0)
             return $days . ' ' . Str::plural('day', $days);
 
-        $hours = $start->diffInHours($now);
+        $hours = (int) $start->diffInHours($now);
         if ($hours > 0)
             return $hours . ' ' . Str::plural('hour', $hours);
 
-        $minutes = $start->diffInMinutes($now);
+        $minutes = (int) $start->diffInMinutes($now);
         if ($minutes > 0)
             return $minutes . ' ' . Str::plural('minute', $minutes);
 
-        $seconds = $start->diffInSeconds($now);
+        $seconds = (int) $start->diffInSeconds($now);
         return $seconds . ' ' . Str::plural('second', $seconds);
     }
 
@@ -76,7 +76,7 @@ class Tracker extends Model
         $now = $customDate ?? now();
 
         if ($this->current_start_at) {
-            $durationSeconds = $this->current_start_at->diffInSeconds($now);
+            $durationSeconds = (int) $this->current_start_at->diffInSeconds($now);
 
             // Save to undo buffer
             $this->previous_start_at = $this->current_start_at;
