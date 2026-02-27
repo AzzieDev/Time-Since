@@ -35,7 +35,51 @@ Instead of storing a bloated historical log of every occurrence, the application
 
 ## Getting Started
 
-*(Installation instructions to be added)*
+## API & Documentation
+
+This application integrates **L5-Swagger** to auto-generate OpenAPI specifications and interactive documentation.
+Once the application is running, simply navigate to `http://localhost:8000/api/documentation` to test all available tracker endpoints directly in your browser without needing Postman or cURL.
+
+## Deployment Strategy
+
+Time Since can be run quickly via Docker (recommended) or deployed manually to a bare-metal server using standard PHP dependencies.
+
+### Option 1: Docker Compose (Recommended)
+This repository includes a production-ready `Dockerfile` (utilizing `serversideup/php:8.3-fpm-nginx`) and a `docker-compose.yml` that seamlessly marries the application to an isolated MySQL database container. 
+
+1. Clone the repository: `git clone https://github.com/AzzieDev/Time-Since`
+2. Navigate to the project directory: `cd Time-Since`
+3. Generate a secure application key out-of-band: `php artisan key:generate --show` (or generate a base64 string manually).
+4. Edit the `docker-compose.yml` file and insert the generated key into the `APP_KEY=` environment variable.
+5. Spin up the cluster:
+   ```bash
+   docker compose up -d
+   ```
+The container will automatically handle running composer dependencies, database connections, and migrations exactly once on startup. The app (and Swagger UI) will be immediately available on **Port 8000**.
+
+### Option 2: Bare Metal / Manual Execution
+If deploying straight to a web server running NGINX, Apache, or Laragon, you can spin it up using native path commands:
+
+1. Clone the repository: `git clone https://github.com/AzzieDev/Time-Since`
+2. Enter the directory: `cd Time-Since`
+3. Copy the environment file and configure your database variables:
+   ```bash
+   cp .env.example .env
+   # Edit .env with your MySQL/SQLite details
+   ```
+4. Install PHP dependencies and generate your system key:
+   ```bash
+   composer install --optimize-autoloader --no-dev
+   php artisan key:generate
+   ```
+5. Migrate the database schema:
+   ```bash
+   php artisan migrate --force
+   ```
+6. Spin up the application (or link the path internally to NGINX/Apache):
+   ```bash
+   php artisan serve
+   ```
 
 ## License
 
