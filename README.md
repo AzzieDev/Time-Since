@@ -3,7 +3,7 @@
 ![Laravel](https://img.shields.io/badge/Laravel-FF2D20?style=flat-square&logo=laravel&logoColor=white)
 ![PHP](https://img.shields.io/badge/PHP-8.2%2B-777BB4?style=flat-square&logo=php&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)
-![Coverage Badge](badges/coverage.svg)
+![Tests](https://img.shields.io/github/actions/workflow/status/Azriel/Time-Since/tests.yml?branch=master&style=flat-square&label=tests)
 
 
 **Time Since** is a Laravel-based application designed to track the time elapsed since specific events occurred. Think of it as a digital "Days since last injury" sign, but capable of tracking multiple custom events simultaneously.
